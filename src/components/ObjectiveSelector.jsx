@@ -4,34 +4,42 @@ export default function ObjectiveSelector({ raceType, raceDistance, selectedObje
 
   return (
     <div className="mb-6">
-      <h3 className="text-lg font-bold mb-3 text-gray-900">🎯 Choisis ton objectif</h3>
-      <div className="grid grid-cols-1 gap-3">
+      <h3 className="text-xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <span className="text-2xl">🎯</span>
+        <span>Choisis ton objectif</span>
+      </h3>
+      <div className="grid grid-cols-1 gap-4">
         {objectives.map((objective) => (
           <button
             key={objective.id}
             onClick={() => onSelect(objective)}
-            className={`p-4 rounded-lg border-2 transition text-left ${
+            className={`p-5 rounded-xl border-3 transition-all text-left transform hover:scale-102 ${
               selectedObjective?.id === objective.id
-                ? 'border-primary bg-primary/5 shadow-md'
-                : 'border-gray-200 hover:border-primary/50 bg-white'
+                ? 'border-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 shadow-xl scale-102'
+                : 'border-gray-300 bg-white hover:border-indigo-400 hover:shadow-lg'
             }`}
           >
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">{objective.icon}</span>
-                <span className="font-bold text-gray-900">{objective.name}</span>
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl filter drop-shadow-md">{objective.icon}</span>
+                <span className="font-black text-lg text-gray-900">{objective.name}</span>
               </div>
-              <span className="text-xs bg-gray-100 px-2 py-1 rounded-full text-gray-600">
+              <span className="text-xs bg-gray-200 text-gray-800 px-3 py-1.5 rounded-full font-bold border border-gray-300">
                 {objective.level}
               </span>
             </div>
-            <div className="text-sm text-gray-700 mb-2">
-              <strong>Temps cible :</strong> {objective.targetTime}
+            <div className="space-y-2 mb-3">
+              <div className="text-sm text-gray-800 font-bold bg-gray-100 px-3 py-2 rounded-lg border border-gray-200">
+                <strong className="text-gray-900">⏱️ Temps cible :</strong> {objective.targetTime}
+              </div>
+              <div className="text-sm text-gray-800 font-bold bg-gray-100 px-3 py-2 rounded-lg border border-gray-200">
+                <strong className="text-gray-900">🏃 Allure :</strong> {objective.pace}
+              </div>
+              <div className="text-sm text-gray-800 font-bold bg-gray-100 px-3 py-2 rounded-lg border border-gray-200">
+                <strong className="text-gray-900">📊 Volume :</strong> {objective.weeklyKm}/semaine
+              </div>
             </div>
-            <div className="text-sm text-gray-600">
-              <strong>Allure :</strong> {objective.pace}
-            </div>
-            <div className="text-xs text-gray-500 mt-2">
+            <div className="text-sm text-gray-700 font-medium bg-white px-3 py-2 rounded-lg border border-gray-200">
               {objective.description}
             </div>
           </button>
